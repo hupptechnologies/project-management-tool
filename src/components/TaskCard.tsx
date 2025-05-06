@@ -11,7 +11,9 @@ export default function TaskCard({ task }: { task: Task }) {
 
 	const router = useRouter();
 	const style = {
-		transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
+		transform: transform
+			? `translate(${transform.x}px, ${transform.y}px)`
+			: undefined,
 	};
 
 	const handleClick = () => {

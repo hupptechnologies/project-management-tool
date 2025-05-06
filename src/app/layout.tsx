@@ -3,7 +3,18 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { useState } from 'react';
-import { ChevronsLeft, ChevronsRight } from 'lucide-react';
+import {
+	CheckSquare,
+	ChevronsLeft,
+	ChevronsRight,
+	LayoutDashboard,
+	MessageSquare,
+	Settings,
+	Users,
+} from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { NavItem, ProjectItem } from '@/lib/types';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,14 +23,44 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const pathname = usePathname(); // Get current route
+
 	const [isCollapsed, setIsCollapsed] = useState(false);
 
-	const navItems = [
-		{ icon: '📋', label: 'Tools', href: '/dashboard/kanban' },
-		{ icon: '➕', label: 'Report Bug', href: '/dashboard/bugs/new' },
-		{ icon: '👤', label: 'Profile', href: '/dashboard/profile' },
+	const navItems: NavItem[] = [
+		{
+			icon: <LayoutDashboard size={16} />,
+			label: 'Home',
+			href: '/dashboard/kanban',
+		},
+		{
+			icon: <MessageSquare size={16} />,
+			label: 'Messages',
+			href: '/dashboard/bugs/new',
+		},
+		{
+			icon: <CheckSquare size={16} />,
+			label: 'Tasks',
+			href: '/dashboard/profile',
+		},
+		{ icon: <Users size={16} />, label: 'Members', href: '/dashboard/member' },
+		{
+			icon: <Settings size={16} />,
+			label: 'Settings',
+			href: '/dashboard/setting',
+		},
 	];
 
+	const projectList: ProjectItem[] = [
+		{ label: 'Mobile App', href: '#1', color: 'bg-blue-500' },
+		{
+			label: 'Website Redesign',
+			href: '#2',
+			color: 'bg-green-500',
+		},
+		{ label: 'Design System', href: '#3', color: 'bg-red-500' },
+		{ label: 'Wireframes', href: '#4', color: 'bg-yellow-500' },
+	];
 	return (
 		<html lang="en">
 			<body className={`${inter.className} bg-white text-gray-900`}>
@@ -55,25 +96,86 @@ export default function RootLayout({
 						</div>
 
 						{/* Navigation */}
-						<nav className="space-y-4 text-sm text-gray-700">
-							{navItems.map((item) => (
-								<a
-									key={item.href}
-									href={item.href}
-									className="flex items-center gap-2 hover:text-red-400 transition"
-								>
-									<span>{item.icon}</span>
-									<span
-										className={`transition-all duration-300 overflow-hidden ${
-											isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'
-										}`}
+						<nav className="space-y-2 text-sm text-gray-700">
+							{navItems.map((item) => {
+								const isActive = pathname === item.href;
+
+								return (
+									<Link
+										key={item.href}
+										href={item.href}
+										className={`group flex items-center gap-2 px-2 py-0.5 rounded transition-all duration-300 relative 
+					hover:bg-gray-100 
+					${isActive ? 'bg-gray-100 font-medium text-red-500' : ''}
+				`}
 									>
-										{item.label}
-									</span>
-								</a>
-							))}
+										{/* Icon */}
+										<span>{item.icon}</span>
+
+										{/* Label */}
+										<span
+											className={`transition-all text-[12px] duration-300 overflow-hidden whitespace-nowrap
+						${isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'}
+					`}
+										>
+											{item.label}
+										</span>
+
+										{/* Tooltip for collapsed view */}
+										{isCollapsed && (
+											<span
+												className="absolute left-full ml-2 top-1/2 -translate-y-1/2 
+							bg-black text-white rounded px-2 py-1 opacity-0 group-hover:opacity-100 
+							transition whitespace-nowrap z-10 text-xs"
+											>
+												{item.label}
+											</span>
+										)}
+									</Link>
+								);
+							})}
 						</nav>
 
+						{!isCollapsed && (
+							<>
+								<div className="my-2 h-0.5 bg-gray-200" />
+								<h6 className="text-[10px] tracking-tight text-black whitespace-nowrap">
+									My projects
+								</h6>
+								<div className="my-2 h-0.5 bg-gray-200" />
+								<nav className="space-y-2 text-sm text-gray-700">
+									{!isCollapsed &&
+										projectList.map((item) => {
+											const isActive = pathname === item.href;
+
+											return (
+												<Link
+													key={item.href}
+													href={item.href}
+													className={`group flex items-center gap-2 px-2 py-0.5 rounded-x transition-all duration-300 relative 
+					hover:bg-gray-100 
+					${isActive ? 'bg-gray-100 font-medium text-red-500' : ''}
+				`}
+												>
+													<div
+														className={`h-2 w-2 ${item.color} rounded-full`}
+													/>
+													{/* Label */}
+													<span
+														className={`transition-all 
+												text-[10px]
+												duration-300 overflow-hidden whitespace-nowrap
+						${isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'}
+					`}
+													>
+														{item.label}
+													</span>
+												</Link>
+											);
+										})}
+								</nav>
+							</>
+						)}
 						{/* Footer */}
 						<div
 							className={`transition-all duration-300 text-xs text-gray-400 mt-10 overflow-hidden ${
