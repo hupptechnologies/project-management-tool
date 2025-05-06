@@ -60,7 +60,7 @@ export default function RootLayout({
 					{/* Sidebar */}
 					<aside
 						className={`bg-white border-r border-gray-200 p-4 hidden md:flex flex-col   transition-all duration-300 ${
-							isCollapsed ? 'w-16' : 'w-48'
+							isCollapsed ? 'w-16' : 'w-40'
 						}`}
 					>
 						{/* Header */}
