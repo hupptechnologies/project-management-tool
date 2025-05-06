@@ -1,6 +1,6 @@
 export default function ProfilePage() {
 	return (
-		<div className="max-w-2xl mx-auto bg-[#1a1a1b] p-8 rounded-xl border border-[#2a2a2b] shadow space-y-6">
+		<div className="max-w-2xl mx-auto bg-[#fff] p-8 rounded-x border border-[#2a2a2b] shadow space-y-6">
 			{/* Avatar + Basic Info */}
 			<div className="flex items-center gap-4">
 				<div className="w-16 h-16 rounded-full bg-[#333] flex items-center justify-center text-xl font-bold">
@@ -19,7 +19,7 @@ export default function ProfilePage() {
 					<input
 						type="text"
 						defaultValue="John Doe"
-						className="w-full bg-[#111] text-white p-3 border border-[#333] rounded-md"
+						className="w-full bg-[#fff] text-black p-3 border border-[#333] rounded-md"
 					/>
 				</div>
 				<div>
@@ -27,14 +27,14 @@ export default function ProfilePage() {
 					<input
 						type="text"
 						defaultValue="Frontend Developer"
-						className="w-full bg-[#111] text-white p-3 border border-[#333] rounded-md"
+						className="w-full bg-[#fff] text-black p-3 border border-[#333] rounded-md"
 					/>
 				</div>
 				<div>
 					<label className="block text-sm text-[#aaa] mb-1">Bio</label>
 					<textarea
 						defaultValue="Passionate about building great UI and fixing bugs."
-						className="w-full bg-[#111] text-white p-3 border border-[#333] rounded-md"
+						className="w-full bg-[#fff] text-black p-3 border border-[#333] rounded-md"
 					/>
 				</div>
 

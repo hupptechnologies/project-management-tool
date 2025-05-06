@@ -25,9 +25,9 @@ export default function TaskCard({ task }: { task: Task }) {
 			{...listeners}
 			{...attributes}
 			onClick={handleClick}
-			className="bg-[#1a1a1d] p-3 rounded-md border border-[#333] hover:border-[#555] hover:bg-[#2c2c2d] transition shadow-sm cursor-pointer active:scale-[0.98]"
+			className="p-3 rounded-x border border-[#333] hover:border-[#555] hover:bg-[#dbdbf3] transition shadow-sm cursor-pointer active:scale-[0.98]"
 		>
-			<p className="text-sm">{task.title}</p>
+			<p className="text-sm text-black">{task.title}</p>
 		</div>
 	);
 }

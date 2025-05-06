@@ -1,5 +1,9 @@
+'use client';
+
 import './globals.css';
 import { Inter } from 'next/font/google';
+import { useState } from 'react';
+import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -8,58 +12,81 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const [isCollapsed, setIsCollapsed] = useState(false);
+
+	const navItems = [
+		{ icon: '📋', label: 'Tools', href: '/dashboard/kanban' },
+		{ icon: '➕', label: 'Report Bug', href: '/dashboard/bugs/new' },
+		{ icon: '👤', label: 'Profile', href: '/dashboard/profile' },
+	];
+
 	return (
 		<html lang="en">
-			<body className={`${inter.className} bg-[#F9FAFB] text-white`}>
+			<body className={`${inter.className} bg-white text-gray-900`}>
 				<div className="flex h-screen overflow-hidden">
 					{/* Sidebar */}
-					<aside className="w-64 bg-[#111112]/80 backdrop-blur-md border-r border-[#1e1e1f] p-6 hidden md:flex flex-col justify-between">
-						<div>
-							<h1 className="text-2xl font-bold mb-8 tracking-tight">
-								🐞 BugHunt
-							</h1>
-							<nav className="space-y-4 text-sm">
-								<a
-									href="/dashboard/kanban"
-									className="flex items-center gap-2 text-[#bbb] hover:text-white transition"
-								>
-									📋 Kanban
-								</a>
-								<a
-									href="/dashboard/bugs/new"
-									className="flex items-center gap-2 text-[#bbb] hover:text-white transition"
-								>
-									➕ Report Bug
-								</a>
-								<a
-									href="/dashboard/profile"
-									className="flex items-center gap-2 text-[#bbb] hover:text-white transition"
-								>
-									👤 Profile
-								</a>
-							</nav>
+					<aside
+						className={`bg-white border-r border-gray-200 p-4 hidden md:flex flex-col   transition-all duration-300 ${
+							isCollapsed ? 'w-16' : 'w-48'
+						}`}
+					>
+						{/* Header */}
+						<div className="flex items-center justify-between mb-8">
+							<div
+								className={`overflow-hidden transition-all duration-300 ${
+									isCollapsed ? 'w-0 opacity-0' : 'w-full opacity-100'
+								}`}
+							>
+								<h1 className="text-xl font-bold tracking-tight text-black whitespace-nowrap">
+									🐞 BugHunt
+								</h1>
+							</div>
+
+							<button
+								onClick={() => setIsCollapsed(!isCollapsed)}
+								className="text-gray-600 hover:text-red-400 transition"
+							>
+								{isCollapsed ? (
+									<ChevronsRight size={20} />
+								) : (
+									<ChevronsLeft size={20} />
+								)}
+							</button>
 						</div>
 
-						<footer className="text-xs text-[#666] mt-10">
+						{/* Navigation */}
+						<nav className="space-y-4 text-sm text-gray-700">
+							{navItems.map((item) => (
+								<a
+									key={item.href}
+									href={item.href}
+									className="flex items-center gap-2 hover:text-red-400 transition"
+								>
+									<span>{item.icon}</span>
+									<span
+										className={`transition-all duration-300 overflow-hidden ${
+											isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+										}`}
+									>
+										{item.label}
+									</span>
+								</a>
+							))}
+						</nav>
+
+						{/* Footer */}
+						<div
+							className={`transition-all duration-300 text-xs text-gray-400 mt-10 overflow-hidden ${
+								isCollapsed ? 'opacity-0 h-0' : 'opacity-100 h-auto'
+							}`}
+						>
 							© {new Date().getFullYear()} BugHunt Inc.
-						</footer>
+						</div>
 					</aside>
 
 					{/* Main Content */}
 					<div className="flex-1 flex flex-col overflow-y-auto">
-						{/* Top Header */}
-						<header className="h-16 px-6 flex items-center justify-between border-b border-[#1e1e1f] bg-[#111112]/70 backdrop-blur-sm">
-							<div className="text-sm text-[#888]">Bug Tracker UI</div>
-							<div className="flex items-center gap-4">
-								{/* Placeholder user profile avatar */}
-								<div className="w-8 h-8 rounded-full bg-[#333] flex items-center justify-center text-sm font-bold">
-									JD
-								</div>
-							</div>
-						</header>
-
-						{/* Page Content */}
-						<main className="p-6 bg-[#10B981] flex-1 overflow-y-auto">
+						<main className="p-6 bg-white flex-1 overflow-y-auto">
 							{children}
 						</main>
 					</div>
