@@ -9,12 +9,15 @@ const initialData: ColumnType[] = [
 	{
 		id: 'todo',
 		title: 'To Do',
-		tasks: [{ id: '1', title: 'Set up project' }],
+		tasks: [
+			{ id: '1', title: 'Set up project' },
+			{ id: '2', title: 'Modal ui issue' },
+		],
 	},
 	{
 		id: 'inprogress',
 		title: 'In Progress',
-		tasks: [{ id: '2', title: 'Design Kanban UI' }],
+		tasks: [{ id: '3', title: 'Design Kanban UI' }],
 	},
 	{
 		id: 'done',
@@ -26,9 +29,8 @@ const initialData: ColumnType[] = [
 export default function Board() {
 	const [columns, setColumns] = useState<ColumnType[]>(initialData);
 
-	const findColumnByTaskId = (taskId: string) => {
-		return columns.find((col) => col.tasks.find((t) => t.id === taskId));
-	};
+	const findColumnByTaskId = (taskId: string) =>
+		columns.find((col) => col.tasks.find((t) => t.id === taskId));
 
 	const handleDragEnd = (event: any) => {
 		const { active, over } = event;
@@ -47,13 +49,11 @@ export default function Board() {
 			return;
 		}
 
-		// Remove from old column
 		const updatedFromCol = {
 			...fromCol,
 			tasks: fromCol.tasks.filter((t) => t.id !== active.id),
 		};
 
-		// Add to new column
 		const updatedToCol = {
 			...toCol,
 			tasks: [...toCol.tasks, task],
@@ -74,7 +74,7 @@ export default function Board() {
 
 	return (
 		<DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-			<div className="grid grid-cols-3 gap-4 p-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
 				{columns.map((column) => (
 					<Column key={column.id} column={column} />
 				))}

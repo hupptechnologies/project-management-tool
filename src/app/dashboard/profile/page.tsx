@@ -1,20 +1,50 @@
 export default function ProfilePage() {
 	return (
-		<div className="max-w-xl mx-auto">
-			<h2 className="text-2xl font-semibold mb-4">Your Profile</h2>
-			<p>
-				<strong>Name:</strong> John Doe
-			</p>
-			<p>
-				<strong>Email:</strong> john@example.com
-			</p>
-			<div className="mt-6">
-				<h3 className="font-semibold">Assigned Bugs</h3>
-				<ul className="list-disc list-inside">
-					<li>Fix dark mode rendering issue</li>
-					<li>Review pull request #42</li>
-				</ul>
+		<div className="max-w-2xl mx-auto bg-[#1a1a1b] p-8 rounded-xl border border-[#2a2a2b] shadow space-y-6">
+			{/* Avatar + Basic Info */}
+			<div className="flex items-center gap-4">
+				<div className="w-16 h-16 rounded-full bg-[#333] flex items-center justify-center text-xl font-bold">
+					JD
+				</div>
+				<div>
+					<p className="text-lg font-medium">John Doe</p>
+					<p className="text-sm text-[#888]">john@example.com</p>
+				</div>
 			</div>
+
+			{/* Editable Fields */}
+			<form className="space-y-5">
+				<div>
+					<label className="block text-sm text-[#aaa] mb-1">Full Name</label>
+					<input
+						type="text"
+						defaultValue="John Doe"
+						className="w-full bg-[#111] text-white p-3 border border-[#333] rounded-md"
+					/>
+				</div>
+				<div>
+					<label className="block text-sm text-[#aaa] mb-1">Role</label>
+					<input
+						type="text"
+						defaultValue="Frontend Developer"
+						className="w-full bg-[#111] text-white p-3 border border-[#333] rounded-md"
+					/>
+				</div>
+				<div>
+					<label className="block text-sm text-[#aaa] mb-1">Bio</label>
+					<textarea
+						defaultValue="Passionate about building great UI and fixing bugs."
+						className="w-full bg-[#111] text-white p-3 border border-[#333] rounded-md"
+					/>
+				</div>
+
+				<button
+					type="submit"
+					className="bg-blue-600 hover:bg-blue-500 transition text-white px-4 py-2 rounded-md text-sm"
+				>
+					Save Changes
+				</button>
+			</form>
 		</div>
 	);
 }

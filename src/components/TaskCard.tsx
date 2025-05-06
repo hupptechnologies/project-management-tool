@@ -1,30 +1,33 @@
+'use client';
+
 import { useDraggable } from '@dnd-kit/core';
 import { Task } from '@/lib/types';
+import { useRouter } from 'next/navigation';
 
-type Props = {
-	task: Task;
-};
-
-export default function TaskCard({ task }: Props) {
+export default function TaskCard({ task }: { task: Task }) {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
 		id: task.id,
 	});
 
+	const router = useRouter();
 	const style = {
-		transform: transform
-			? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-			: undefined,
+		transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
+	};
+
+	const handleClick = () => {
+		router.push(`/dashboard/bugs/${task.id}`);
 	};
 
 	return (
 		<div
 			ref={setNodeRef}
+			style={style}
 			{...listeners}
 			{...attributes}
-			style={style}
-			className="bg-white p-3 rounded shadow cursor-grab"
+			onClick={handleClick}
+			className="bg-[#1a1a1d] p-3 rounded-md border border-[#333] hover:border-[#555] hover:bg-[#2c2c2d] transition shadow-sm cursor-pointer active:scale-[0.98]"
 		>
-			<h3 className="font-medium">{task.title}</h3>
+			<p className="text-sm">{task.title}</p>
 		</div>
 	);
 }

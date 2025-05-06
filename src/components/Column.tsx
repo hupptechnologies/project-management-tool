@@ -1,21 +1,25 @@
+'use client';
+
+import { useDroppable } from '@dnd-kit/core';
 import { Column as ColumnType } from '@/lib/types';
 import TaskCard from './TaskCard';
-import { useDroppable } from '@dnd-kit/core';
 
-type Props = {
-	column: ColumnType;
-};
-
-export default function Column({ column }: Props) {
+export default function Column({ column }: { column: ColumnType }) {
 	const { setNodeRef } = useDroppable({ id: column.id });
 
 	return (
 		<div
 			ref={setNodeRef}
-			className="bg-gray-100 rounded-xl p-4 shadow-sm min-h-[200px]"
+			className="bg-[#1a1a1d] border border-[#2a2a2b] rounded-xl p-4 flex flex-col gap-4 shadow-md"
 		>
-			<h2 className="font-semibold text-lg mb-4">{column.title}</h2>
-			<div className="space-y-2">
+			{/* Column Header */}
+			<div className="flex justify-between items-center mb-2">
+				<h3 className="text-lg font-semibold">{column.title}</h3>
+				<span className="text-xs text-[#888]">{column.tasks.length}</span>
+			</div>
+
+			{/* Tasks */}
+			<div className="flex flex-col gap-3">
 				{column.tasks.map((task) => (
 					<TaskCard key={task.id} task={task} />
 				))}
