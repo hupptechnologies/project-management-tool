@@ -1,0 +1,116 @@
+'use client';
+
+import { Paperclip, User, CheckCircle } from 'lucide-react';
+import clsx from 'clsx';
+
+const bugTimeline = [
+	{
+		id: 1,
+		type: 'created',
+		user: 'Alice',
+		message: 'Bug reported by Alice',
+		time: '2025-05-06 10:15 AM',
+	},
+	{
+		id: 2,
+		type: 'assigned',
+		user: 'Bob',
+		message: 'Assigned to Bob',
+		time: '2025-05-06 11:00 AM',
+	},
+	{
+		id: 3,
+		type: 'attachment',
+		user: 'Alice',
+		message: 'Uploaded screenshot.png',
+		time: '2025-05-06 11:05 AM',
+		file: '/screenshot.png',
+	},
+	{
+		id: 4,
+		type: 'status',
+		user: 'Bob',
+		message: 'Marked as In Progress',
+		time: '2025-05-06 1:15 PM',
+		status: 'In Progress',
+	},
+	{
+		id: 5,
+		type: 'status',
+		user: 'Bob',
+		message: 'Marked as Fixed',
+		time: '2025-05-07 9:45 AM',
+		status: 'Fixed',
+	},
+];
+
+export default function BugTimelinePage() {
+	const iconMap = {
+		created: <User size={18} className="text-gray-500" />,
+		assigned: <User size={18} className="text-gray-500" />,
+		attachment: <Paperclip size={18} className="text-indigo-500" />,
+		status: <CheckCircle size={18} className="text-green-500" />,
+	};
+
+	return (
+		<div className=" mx-auto p-1">
+			<h2 className="text-[12px] font-bold text-gray-900 mb-6">🐞 Bug Timeline</h2>
+
+			<div className="relative">
+				{/* Vertical Line */}
+				<div className="absolute left-3 top-0 bottom-0 w-px bg-gray-300" />
+
+				<ul className="space-y-6">
+					{bugTimeline.map((entry) => (
+						<li key={entry.id} className="relative flex items-start gap-4">
+							{/* Icon */}
+							<div className="z-10 bg-white rounded-full p-1 border border-gray-300">
+								{iconMap[entry.type]}
+							</div>
+
+							{/* Content Box */}
+							<div className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 w-full">
+								<div className="flex justify-between items-center mb-1">
+									<p className="text-[10px] font-medium text-gray-800">
+										{entry.message}
+									</p>
+									<span className="text-[8px] text-gray-400">{entry.time}</span>
+								</div>
+
+								{entry.status && (
+									<p
+										className={clsx(
+											'text-[8px] font-semibold mt-1 inline-block px-2 py-1 rounded',
+											{
+												'bg-yellow-100 text-yellow-800':
+													entry.status === 'In Progress',
+												'bg-green-100 text-green-800': entry.status === 'Fixed',
+												'bg-blue-100 text-blue-800': ![
+													'In Progress',
+													'Fixed',
+												].includes(entry.status),
+											}
+										)}
+									>
+										Status: {entry.status}
+									</p>
+								)}
+
+								{entry.file && (
+									<a
+										href={entry.file}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-[8px] mt-2 text-indigo-600 underline block hover:text-indigo-800"
+									>
+										View Attachment
+									</a>
+								)}
+							</div>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
+	);
+}

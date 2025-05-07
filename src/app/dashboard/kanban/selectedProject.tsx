@@ -3,6 +3,7 @@
 import { ArrowLeft, FolderKanban, MoreVertical, Star } from 'lucide-react';
 import { PROJECT_LIST } from '@/constants';
 import TabView from './tab';
+import Board from '@/components/Board';
 
 type Props = {
 	project: (typeof PROJECT_LIST)[0];
@@ -41,7 +42,7 @@ export default function SelectedProject({ project, onBack }: Props) {
 			</div>
 
 			{/* Tabs */}
-			<TabView />
+			<Board />
 		</>
 	);
 }

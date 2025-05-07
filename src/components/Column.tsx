@@ -21,10 +21,14 @@ export default function Column({ column }: { column: ColumnType }) {
 			</div>
 
 			{/* Tasks */}
-			<div className="flex flex-col gap-2 w-[180px] ">
-				{column.tasks.map((task) => (
-					<TaskCard key={task.id} task={task} />
-				))}
+			<div className="flex flex-col gap-2 w-[180px]">
+				{column.tasks.length === 0 ? (
+					<div className="text-[8px] text-gray-400 text-center py-4 border border-dashed border-gray-300 rounded">
+						No tasks
+					</div>
+				) : (
+					column.tasks.map((task) => <TaskCard key={task.id} task={task} />)
+				)}
 			</div>
 		</div>
 	);

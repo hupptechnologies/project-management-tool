@@ -7,31 +7,31 @@ import Column from './Column';
 
 const initialData: ColumnType[] = [
 	{
-		id: 'todo',
-		title: 'To Do',
+		id: 'New',
+		title: 'New',
 		tasks: [
 			{ id: '1', title: 'Set up project' },
 			{ id: '2', title: 'Modal ui issue' },
 		],
 	},
 	{
-		id: 'inprogress',
+		id: 'Triaged',
+		title: 'Triaged',
+		tasks: [{ id: '4', title: 'Design Kanban UI' }],
+	},
+	{
+		id: 'Inprogress',
 		title: 'In Progress',
 		tasks: [{ id: '3', title: 'Design Kanban UI' }],
 	},
 	{
-		id: 'review',
-		title: 'In review',
-		tasks: [{ id: '4', title: 'Design Kanban UI' }],
-	},
-	{
-		id: 'reopen',
-		title: 'Re-open',
+		id: 'Review',
+		title: 'Review',
 		tasks: [{ id: '5', title: 'Test something' }],
 	},
 	{
-		id: 'done',
-		title: 'Done',
+		id: 'Resolved',
+		title: 'Resolved',
 		tasks: [],
 	},
 ];
@@ -44,21 +44,25 @@ export default function Board() {
 
 	const handleDragEnd = (event: any) => {
 		const { active, over } = event;
+
+		// ⛔ Do nothing if there's no drop target or dropped in the same place
 		if (!over || active.id === over.id) {
 			return;
 		}
 
 		const fromCol = findColumnByTaskId(active.id);
 		const toCol = columns.find((col) => col.id === over.id);
-		if (!fromCol || !toCol) {
-			return;
-		}
+
+		// ⛔ Do nothing if columns aren't found
+		if (!fromCol || !toCol) return;
 
 		const task = fromCol.tasks.find((t) => t.id === active.id);
-		if (!task) {
-			return;
-		}
+		if (!task) return;
 
+		// ✅ Skip moving if already in the same column
+		if (fromCol.id === toCol.id) return;
+
+		// Move task
 		const updatedFromCol = {
 			...fromCol,
 			tasks: fromCol.tasks.filter((t) => t.id !== active.id),
@@ -70,12 +74,8 @@ export default function Board() {
 		};
 
 		const updatedCols = columns.map((col) => {
-			if (col.id === fromCol.id) {
-				return updatedFromCol;
-			}
-			if (col.id === toCol.id) {
-				return updatedToCol;
-			}
+			if (col.id === fromCol.id) return updatedFromCol;
+			if (col.id === toCol.id) return updatedToCol;
 			return col;
 		});
 
@@ -84,7 +84,7 @@ export default function Board() {
 
 	return (
 		<DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-			<div className="flex space-x-6 p-0">
+			<div className="flex space-x-2 p-0">
 				{/* Fixed width for each column */}
 				{columns.map((column) => (
 					<Column key={column.id} column={column} />

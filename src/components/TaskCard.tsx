@@ -3,7 +3,8 @@
 import { useDraggable } from '@dnd-kit/core';
 import { Task } from '@/lib/types';
 import { useRouter } from 'next/navigation';
-import { File, MessageCircle, MoreVertical, Star } from 'lucide-react';
+import { File, MessageCircle, Star } from 'lucide-react';
+import { useRef } from 'react';
 
 export default function TaskCard({ task }: { task: Task }) {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -17,8 +18,20 @@ export default function TaskCard({ task }: { task: Task }) {
 			: undefined,
 	};
 
-	const handleClick = () => {
-		router.push(`/dashboard/bugs/${task.id}`);
+	const isDragging = useRef(false);
+
+	const handleMouseDown = () => {
+		isDragging.current = false;
+	};
+
+	const handleMouseMove = () => {
+		isDragging.current = true;
+	};
+
+	const handleMouseUp = () => {
+		if (!isDragging.current) {
+			router.push(`/dashboard/bugs/${task.id}`);
+		}
 	};
 
 	return (
@@ -27,7 +40,9 @@ export default function TaskCard({ task }: { task: Task }) {
 			style={style}
 			{...listeners}
 			{...attributes}
-			onClick={handleClick}
+			onMouseDown={handleMouseDown}
+			onMouseMove={handleMouseMove}
+			onMouseUp={handleMouseUp}
 			className="p-1 
 			rounded-x
 			bg-white
@@ -50,7 +65,7 @@ export default function TaskCard({ task }: { task: Task }) {
 						'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfk3OPGuPxoO8iHaIkCiWpq1ECy115Xq0ODA&s'
 					}
 					alt="Example"
-					className="h-16 w-44 rounded-[2px] border border-[#d0d0d3]  hover:bg-[#dbdbf3] transition"
+					className="h-16 w-44 rounded-[2px]hover:bg-[#dbdbf3] transition"
 				/>
 			</div>
 			<div className="flex gap-2 items-center overflow-x-auto py-1 flex-row justify-between">

@@ -2,6 +2,7 @@ import Board from '@/components/Board';
 import { KANBAN_COLUMNS } from '@/constants';
 import { Tab } from '@headlessui/react';
 import React from 'react';
+import BugTimelinePage from './timeLine';
 
 export default function TabView() {
 	return (
@@ -25,11 +26,12 @@ export default function TabView() {
 					))}
 				</Tab.List>
 				<Tab.Panels>
-					<Tab.Panel>
-						<Board />
-					</Tab.Panel>
+					<Tab.Panel>-</Tab.Panel>
+
 					<Tab.Panel>Tasks content</Tab.Panel>
-					<Tab.Panel>Timelines content</Tab.Panel>
+					<Tab.Panel>
+						<BugTimelinePage />
+					</Tab.Panel>
 					<Tab.Panel>Files content</Tab.Panel>
 					<Tab.Panel>Overview content</Tab.Panel>
 				</Tab.Panels>
