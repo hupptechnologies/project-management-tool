@@ -40,3 +40,13 @@ export interface COLUMN {
 	label: string;
 	value: string;
 }
+
+export interface BugTimeline {
+	id: number;
+	type: string;
+	user: string;
+	message: string;
+	time: string;
+	file?: string;
+	status?: string;
+}

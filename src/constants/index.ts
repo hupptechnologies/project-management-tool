@@ -1,4 +1,4 @@
-import { COLUMN, Project, ProjectFilter } from '@/lib/types';
+import { BugTimeline, COLUMN, Project, ProjectFilter } from '@/lib/types';
 
 export const PROJECT_LIST: Project[] = [
 	{
@@ -63,7 +63,6 @@ export const PROJECT_LIST: Project[] = [
 	},
 ];
 
-
 export const PROJECT_FILTER: ProjectFilter[] = [
 	{ label: 'All', count: 20 },
 	{ label: 'Discussion', count: 3 },
@@ -78,4 +77,45 @@ export const KANBAN_COLUMNS: COLUMN[] = [
 	{ label: 'Timelines', value: 'Timelines' },
 	{ label: 'Files', value: 'Files' },
 	{ label: 'Overview', value: 'Overview' },
+];
+
+export const BUG_TIMELINE: BugTimeline[] = [
+	{
+		id: 1,
+		type: 'created',
+		user: 'Alice',
+		message: 'Bug reported by Alice',
+		time: '2025-05-06 10:15 AM',
+	},
+	{
+		id: 2,
+		type: 'assigned',
+		user: 'Bob',
+		message: 'Assigned to Bob',
+		time: '2025-05-06 11:00 AM',
+	},
+	{
+		id: 3,
+		type: 'attachment',
+		user: 'Alice',
+		message: 'Uploaded screenshot.png',
+		time: '2025-05-06 11:05 AM',
+		file: '/screenshot.png',
+	},
+	{
+		id: 4,
+		type: 'status',
+		user: 'Bob',
+		message: 'Marked as In Progress',
+		time: '2025-05-06 1:15 PM',
+		status: 'In Progress',
+	},
+	{
+		id: 5,
+		type: 'status',
+		user: 'Bob',
+		message: 'Marked as Fixed',
+		time: '2025-05-07 9:45 AM',
+		status: 'Fixed',
+	},
 ];

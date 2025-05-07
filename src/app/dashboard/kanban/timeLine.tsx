@@ -2,47 +2,7 @@
 
 import { Paperclip, User, CheckCircle } from 'lucide-react';
 import clsx from 'clsx';
-
-const bugTimeline = [
-	{
-		id: 1,
-		type: 'created',
-		user: 'Alice',
-		message: 'Bug reported by Alice',
-		time: '2025-05-06 10:15 AM',
-	},
-	{
-		id: 2,
-		type: 'assigned',
-		user: 'Bob',
-		message: 'Assigned to Bob',
-		time: '2025-05-06 11:00 AM',
-	},
-	{
-		id: 3,
-		type: 'attachment',
-		user: 'Alice',
-		message: 'Uploaded screenshot.png',
-		time: '2025-05-06 11:05 AM',
-		file: '/screenshot.png',
-	},
-	{
-		id: 4,
-		type: 'status',
-		user: 'Bob',
-		message: 'Marked as In Progress',
-		time: '2025-05-06 1:15 PM',
-		status: 'In Progress',
-	},
-	{
-		id: 5,
-		type: 'status',
-		user: 'Bob',
-		message: 'Marked as Fixed',
-		time: '2025-05-07 9:45 AM',
-		status: 'Fixed',
-	},
-];
+import { BUG_TIMELINE } from '@/constants';
 
 export default function BugTimelinePage() {
 	const iconMap = {
@@ -54,14 +14,16 @@ export default function BugTimelinePage() {
 
 	return (
 		<div className=" mx-auto p-1">
-			<h2 className="text-[12px] font-bold text-gray-900 mb-6">🐞 Bug Timeline</h2>
+			<h2 className="text-[12px] font-bold text-gray-900 mb-6">
+				🐞 Bug Timeline
+			</h2>
 
 			<div className="relative">
 				{/* Vertical Line */}
 				<div className="absolute left-3 top-0 bottom-0 w-px bg-gray-300" />
 
 				<ul className="space-y-6">
-					{bugTimeline.map((entry) => (
+					{BUG_TIMELINE.map((entry) => (
 						<li key={entry.id} className="relative flex items-start gap-4">
 							{/* Icon */}
 							<div className="z-10 bg-white rounded-full p-1 border border-gray-300">
