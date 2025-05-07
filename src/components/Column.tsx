@@ -10,16 +10,18 @@ export default function Column({ column }: { column: ColumnType }) {
 	return (
 		<div
 			ref={setNodeRef}
-			className="border border-[#2a2a2b] rounded-x p-4 flex flex-col gap-4 shadow-md"
+			className="border w-[200px] border-[#d0d0d3] rounded-[2px] p-2 flex flex-col gap-0.5 shadow-md"
 		>
 			{/* Column Header */}
-			<div className="flex justify-between items-center mb-2">
-				<h3 className="text-x text-[#000] font-semibold">{column.title}</h3>
-				<span className="text-xs text-[#000]">{column.tasks.length}</span>
+			<div className="flex justify-between items-center mb-1">
+				<h3 className="text-[10px] text-[#000]">
+					{column.title.toUpperCase()}
+				</h3>
+				<span className="text-[8px] text-[#000]">[{column.tasks.length}]</span>
 			</div>
 
 			{/* Tasks */}
-			<div className="flex flex-col gap-3">
+			<div className="flex flex-col gap-2 w-[180px] ">
 				{column.tasks.map((task) => (
 					<TaskCard key={task.id} task={task} />
 				))}

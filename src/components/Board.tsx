@@ -20,6 +20,16 @@ const initialData: ColumnType[] = [
 		tasks: [{ id: '3', title: 'Design Kanban UI' }],
 	},
 	{
+		id: 'review',
+		title: 'In review',
+		tasks: [{ id: '4', title: 'Design Kanban UI' }],
+	},
+	{
+		id: 'reopen',
+		title: 'Re-open',
+		tasks: [{ id: '5', title: 'Test something' }],
+	},
+	{
 		id: 'done',
 		title: 'Done',
 		tasks: [],
@@ -74,7 +84,8 @@ export default function Board() {
 
 	return (
 		<DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+			<div className="flex space-x-6 p-0">
+				{/* Fixed width for each column */}
 				{columns.map((column) => (
 					<Column key={column.id} column={column} />
 				))}

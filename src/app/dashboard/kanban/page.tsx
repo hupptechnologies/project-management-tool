@@ -86,7 +86,7 @@ export default function KanbanPage() {
 	return (
 		<div className="flex flex-row">
 			<div className="w-48">
-				<p className="text-[12px] font-semibold text-gray-700 uppercase tracking-wide mb-2">
+				<p className="text-[10px] font-semibold text-gray-700 uppercase tracking-wide mb-2">
 					All Projects
 				</p>
 
@@ -161,9 +161,9 @@ export default function KanbanPage() {
 				</div>
 			</div>
 
-			<div className="w-full h-50 p-4">
+			<div className="w-full h-50 px-4">
 				<div
-					className="my-2 rounded-[4px] border border-gray-200  p-1.5 
+					className=" rounded-[4px] border border-gray-200  p-1.5 
                flex items-center justify-between transition-all duration-200 
                hover:shadow-md hover:bg-gray-50 hover:scale-[1.01] cursor-pointer"
 				>
@@ -188,34 +188,36 @@ export default function KanbanPage() {
 					<MoreVertical size={10} className="text-black shrink-0 ml-2" />
 				</div>
 
-				<Tab.Group>
-					<Tab.List className="flex gap-3 border-b border-gray-200 mb-4">
-						{tabs.map((tab) => (
-							<Tab
-								key={tab.value}
-								className={({ selected }) =>
-									`px-4 py-0.5 text-[12px] rounded-[2px] transition-all
+				<div className="my-2">
+					<Tab.Group>
+						<Tab.List className="flex gap-3 border-b border-gray-200 mb-4">
+							{tabs.map((tab) => (
+								<Tab
+									key={tab.value}
+									className={({ selected }) =>
+										`px-4 py-0.5 text-[10px] rounded-[2px] transition-all
             ${
 							selected
 								? 'border-b-2 border-black text-black'
 								: 'text-gray-600 hover:bg-gray-100'
 						}`
-								}
-							>
-								{tab.label}
-							</Tab>
-						))}
-					</Tab.List>
-					<Tab.Panels>
-						<Tab.Panel>
-							<div>
-								<Board />
-							</div>
-						</Tab.Panel>
-						<Tab.Panel>Tasks content</Tab.Panel>
-						<Tab.Panel>Settings content</Tab.Panel>
-					</Tab.Panels>
-				</Tab.Group>
+									}
+								>
+									{tab.label}
+								</Tab>
+							))}
+						</Tab.List>
+						<Tab.Panels>
+							<Tab.Panel>
+								<div>
+									<Board />
+								</div>
+							</Tab.Panel>
+							<Tab.Panel>Tasks content</Tab.Panel>
+							<Tab.Panel>Settings content</Tab.Panel>
+						</Tab.Panels>
+					</Tab.Group>
+				</div>
 			</div>
 		</div>
 	);

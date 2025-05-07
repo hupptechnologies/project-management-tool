@@ -25,9 +25,9 @@ export default function Header() {
 				<Link href={'/dashboard/profile'}>
 					<div className="flex items-center gap-2">
 						<img
-							src="/avatar.png"
+							src="https://eliteadmin.themedesigner.in/demos/bt4/university/dist/images/users/11.jpg"
 							alt="User"
-							className="w-4 h-4 rounded-full border border-gray-300"
+							className="w-6 h-6 rounded-full border border-gray-300"
 						/>
 					</div>
 				</Link>
