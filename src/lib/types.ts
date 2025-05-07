@@ -23,3 +23,19 @@ export interface ProjectItem {
 	href: string;
 	color: string;
 }
+
+export interface Project {
+	name: string;
+	description: string;
+	color: string;
+}
+
+export interface ProjectFilter {
+	label: string;
+	count: number;
+}
+
+export interface COLUMN {
+	label: string;
+	value: string;
+}

@@ -27,7 +27,7 @@ export default function TaskCard({ task }: { task: Task }) {
 			style={style}
 			{...listeners}
 			{...attributes}
-			// onClick={handleClick}
+			onClick={handleClick}
 			className="p-1 
 			rounded-x
 			bg-white
