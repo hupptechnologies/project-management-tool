@@ -1,5 +1,10 @@
 import Board from '@/components/Board';
-import { ArrowRight, FolderKanban, Search } from 'lucide-react';
+import {
+	ArrowRight,
+	FolderKanban,
+	Search,
+	SlidersHorizontal,
+} from 'lucide-react';
 
 export default function KanbanPage() {
 	const projectList = [
@@ -59,11 +64,20 @@ export default function KanbanPage() {
 		<div className="flex flex-row">
 			<div className="w-48">
 				<div className="flex items-center gap-2 relative">
-					<Search className="absolute left-3 text-gray-500" size={16} />
+					{/* Search Icon */}
+					<Search className="absolute left-3 text-gray-500" size={8} />
+
+					{/* Input */}
 					<input
 						type="text"
 						placeholder="Search for projects..."
-						className="pl-8 pr-3 py-1 text-black text-[10px] rounded-md border border-gray-300 w-full focus:outline-none focus:ring-1 focus:ring-black"
+						className="pl-8 pr-8 py-1 text-black text-[8px] rounded-[2px] border border-gray-300 w-full focus:outline-none focus:ring-1 focus:ring-black"
+					/>
+
+					{/* Filter Icon */}
+					<SlidersHorizontal
+						className="absolute right-3 text-gray-500 cursor-pointer"
+						size={8}
 					/>
 				</div>
 				<div className="h-[410px] overflow-y-auto pr-1">
@@ -77,23 +91,23 @@ export default function KanbanPage() {
 							{/* Left Section */}
 							<div className="flex items-center gap-3 w-full overflow-hidden">
 								<div className="p-2 bg-gray-100 rounded-full shrink-0">
-									<FolderKanban size={16} className="text-gray-600" />
+									<FolderKanban size={10} className="text-gray-600" />
 								</div>
 
 								<div className="flex-1 min-w-0">
 									<div className="flex items-center gap-2 mb-1">
-										<h6 className="font-semibold text-black text-[12px] truncate">
+										<h6 className=" text-black text-[10px] truncate">
 											{project.name}
 										</h6>
 									</div>
-									<p className="text-[10px] text-black truncate">
+									<p className="text-[8px] text-black truncate">
 										{project.description}
 									</p>
 								</div>
 							</div>
 
 							{/* Right Icon */}
-							<ArrowRight size={14} className="text-black shrink-0 ml-2" />
+							<ArrowRight size={10} className="text-black shrink-0 ml-2" />
 						</div>
 					))}
 				</div>

@@ -31,23 +31,23 @@ export default function RootLayout({
 
 	const navItems: NavItem[] = [
 		{
-			icon: <LayoutDashboard size={16} />,
+			icon: <LayoutDashboard size={12} />,
 			label: 'Home',
 			href: '/dashboard/kanban',
 		},
 		{
-			icon: <MessageSquare size={16} />,
+			icon: <MessageSquare size={12} />,
 			label: 'Messages',
 			href: '/dashboard/message',
 		},
 		{
-			icon: <CheckSquare size={16} />,
+			icon: <CheckSquare size={12} />,
 			label: 'Tasks',
 			href: '/dashboard/bugs/new',
 		},
-		{ icon: <Users size={16} />, label: 'Members', href: '/dashboard/member' },
+		{ icon: <Users size={12} />, label: 'Members', href: '/dashboard/member' },
 		{
-			icon: <Settings size={16} />,
+			icon: <Settings size={12} />,
 			label: 'Settings',
 			href: '/dashboard/setting',
 		},
@@ -70,7 +70,7 @@ export default function RootLayout({
 									isCollapsed ? 'w-0 opacity-0' : 'w-full opacity-100'
 								}`}
 							>
-								<h1 className="text-xl font-bold tracking-tight text-black whitespace-nowrap">
+								<h1 className="text-[16px] font-bold tracking-tight text-black whitespace-nowrap">
 									🐞 BugHunt
 								</h1>
 							</div>
@@ -80,9 +80,9 @@ export default function RootLayout({
 								className="text-gray-600 hover:text-red-400 transition"
 							>
 								{isCollapsed ? (
-									<ChevronsRight size={20} />
+									<ChevronsRight size={12} />
 								) : (
-									<ChevronsLeft size={20} />
+									<ChevronsLeft size={12} />
 								)}
 							</button>
 						</div>
@@ -106,7 +106,7 @@ export default function RootLayout({
 
 										{/* Label */}
 										<span
-											className={`transition-all text-[12px] duration-300 overflow-hidden whitespace-nowrap
+											className={`transition-all text-[10px] duration-300 overflow-hidden whitespace-nowrap
 						${isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'}
 					`}
 										>

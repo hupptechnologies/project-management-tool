@@ -17,7 +17,7 @@ export default function ProjectMenu() {
 	return (
 		<>
 			<div className="my-2 h-0.5 bg-gray-200" />
-			<h6 className="text-[10px] tracking-tight text-black whitespace-nowrap">
+			<h6 className="text-[8px] tracking-tight text-black whitespace-nowrap">
 				My projects
 			</h6>
 			<div className="my-2 h-0.5 bg-gray-200" />
@@ -32,11 +32,11 @@ export default function ProjectMenu() {
                     ${item.color}}
 				`}
 						>
-							<div className={`h-2 w-2 ${item.color} rounded-full`} />
+							<div className={`h-1 w-1 ${item.color} rounded-full`} />
 							{/* Label */}
 							<span
 								className={`transition-all 
-												text-[10px]
+												text-[8px]
 												duration-300 overflow-hidden whitespace-nowrap
 						   'opacity-100 w-auto'
 					`}
