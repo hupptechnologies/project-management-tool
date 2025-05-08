@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { LucideIcon } from 'lucide-react';
 
 export type Task = {
 	id: string;
@@ -56,4 +57,15 @@ export interface Attachment {
 	type: string;
 	size: number;
 	name: string;
+}
+
+export interface ActionItem {
+	name: string;
+	icon: LucideIcon;
+}
+
+export interface MetaInfo {
+	label: string;
+	value: string;
+	className?: string;
 }

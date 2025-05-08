@@ -1,10 +1,13 @@
 import {
+	ActionItem,
 	Attachment,
 	BugTimeline,
 	COLUMN,
+	MetaInfo,
 	Project,
 	ProjectFilter,
 } from '@/lib/types';
+import { UserPlus, Edit3, Eye, Copy, Pin } from 'lucide-react';
 
 export const PROJECT_LIST: Project[] = [
 	{
@@ -148,4 +151,38 @@ export const TIMELINE_ATTACHMENT: Attachment[] = [
 		size: 10,
 		name: 'Test.mp4',
 	},
+];
+
+export const ACTION_LIST: ActionItem[] = [
+	{ name: 'Edit', icon: Edit3 },
+	{ name: 'Assign to', icon: UserPlus },
+	{ name: 'Monitor', icon: Eye },
+	{ name: 'Stick', icon: Pin },
+	{ name: 'Clone', icon: Copy },
+];
+
+export const META_INFO: MetaInfo[] = [
+	{ label: 'Reporter', value: 'Alice' },
+	{ label: 'Assigned To', value: 'Jack' },
+	{ label: 'Priority', value: 'High', className: 'text-yellow-600' },
+	{ label: 'Severity', value: 'Major', className: 'text-red-600' },
+	{ label: 'Reproducibility', value: 'Always' },
+	{ label: 'Resolution', value: 'Reopened' },
+];
+
+export const ASSIGN_OPTION: string[] = [
+	'Myself',
+	'Reporter',
+	'Administrator',
+	'UserA',
+	'UserB',
+	'UserC',
+];
+
+export const STATUS_OPTION: string[] = [
+	'New',
+	'Confirmed',
+	'Assigned',
+	'Resolved',
+	'Feedback',
 ];
