@@ -1,4 +1,10 @@
-import { BugTimeline, COLUMN, Project, ProjectFilter } from '@/lib/types';
+import {
+	Attachment,
+	BugTimeline,
+	COLUMN,
+	Project,
+	ProjectFilter,
+} from '@/lib/types';
 
 export const PROJECT_LIST: Project[] = [
 	{
@@ -72,11 +78,14 @@ export const PROJECT_FILTER: ProjectFilter[] = [
 ];
 
 export const KANBAN_COLUMNS: COLUMN[] = [
-	{ label: 'Discussion', value: 'Discussion' },
-	{ label: 'Tasks', value: 'tasks' },
-	{ label: 'Timelines', value: 'Timelines' },
-	{ label: 'Files', value: 'Files' },
-	{ label: 'Overview', value: 'Overview' },
+	{ label: 'Relationships', value: 'Relationships' },
+	{
+		label: 'Users monitoring this issue',
+		value: 'Users monitoring this issue',
+	},
+	{ label: 'Issue History', value: 'Issue History' },
+	{ label: 'Add Note', value: 'Add Note' },
+	{ label: 'Activities', value: 'Activities' },
 ];
 
 export const BUG_TIMELINE: BugTimeline[] = [
@@ -117,5 +126,26 @@ export const BUG_TIMELINE: BugTimeline[] = [
 		message: 'Marked as Fixed',
 		time: '2025-05-07 9:45 AM',
 		status: 'Fixed',
+	},
+];
+
+export const TIMELINE_ATTACHMENT: Attachment[] = [
+	{
+		type: 'image',
+		src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfk3OPGuPxoO8iHaIkCiWpq1ECy115Xq0ODA&s',
+		size: 1.4,
+		name: 'Demo.png',
+	},
+	{
+		type: 'image',
+		src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfk3OPGuPxoO8iHaIkCiWpq1ECy115Xq0ODA&s',
+		size: 2,
+		name: 'Filter.png',
+	},
+	{
+		type: 'video',
+		src: '/crash-demo.mp4',
+		size: 10,
+		name: 'Test.mp4',
 	},
 ];

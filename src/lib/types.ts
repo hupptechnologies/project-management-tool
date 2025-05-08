@@ -50,3 +50,10 @@ export interface BugTimeline {
 	file?: string;
 	status?: string;
 }
+
+export interface Attachment {
+	src: string;
+	type: string;
+	size: number;
+	name: string;
+}

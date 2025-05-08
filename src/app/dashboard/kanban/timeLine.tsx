@@ -6,32 +6,32 @@ import { BUG_TIMELINE } from '@/constants';
 
 export default function BugTimelinePage() {
 	const iconMap = {
-		created: <User size={18} className="text-gray-500" />,
-		assigned: <User size={18} className="text-gray-500" />,
-		attachment: <Paperclip size={18} className="text-indigo-500" />,
-		status: <CheckCircle size={18} className="text-green-500" />,
+		created: <User size={10} className="text-gray-500" />,
+		assigned: <User size={10} className="text-gray-500" />,
+		attachment: <Paperclip size={10} className="text-indigo-500" />,
+		status: <CheckCircle size={10} className="text-green-500" />,
 	};
 
 	return (
 		<div className=" mx-auto p-1">
-			<h2 className="text-[12px] font-bold text-gray-900 mb-6">
+			<h2 className="text-[14px] font-bold text-gray-900 mb-6">
 				🐞 Bug Timeline
 			</h2>
 
 			<div className="relative">
 				{/* Vertical Line */}
-				<div className="absolute left-3 top-0 bottom-0 w-px bg-gray-300" />
+				<div className="absolute left-2.5 top-0 bottom-0 w-px bg-gray-300" />
 
-				<ul className="space-y-6">
+				<ul className="space-y-4">
 					{BUG_TIMELINE.map((entry) => (
-						<li key={entry.id} className="relative flex items-start gap-4">
+						<li key={entry.id} className="relative flex items-start gap-2">
 							{/* Icon */}
 							<div className="z-10 bg-white rounded-full p-1 border border-gray-300">
 								{iconMap[entry.type]}
 							</div>
 
 							{/* Content Box */}
-							<div className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 w-full">
+							<div className="bg-white border border-gray-200 rounded-[1px] shadow-sm p-2 w-full">
 								<div className="flex justify-between items-center mb-1">
 									<p className="text-[10px] font-medium text-gray-800">
 										{entry.message}
